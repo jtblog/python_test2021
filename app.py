@@ -24,11 +24,11 @@ class cDateTimeField(db.DateTimeField):
             self.error('DateTime cannot be in the past')
 
 class audioMetaData(db.DynamicEmbeddedDocument):
-    id = db.IntField(required = True, unique = True)
+    #id = db.IntField(required = True, unique = True)
     name = db.StringField(required = True, max_length = 100)
     duration = db.IntField(required = True, min_value = 1)
-    upload_time = cDateTimeField(required = True, default = datetime.datetime.utcnow())
-    participant = db.ListField(db.StringField(max_length = 100))#, default = [])
+    #upload_time = cDateTimeField(required = True, default = datetime.datetime.utcnow())
+    participants = db.ListField(db.StringField(max_length = 100))#, default = [])
         
 class Audio(db.DynamicDocument):
     audioFileType = db.StringField(required = True, max_length = 100)
@@ -39,6 +39,18 @@ class Audio(db.DynamicDocument):
 def index():
     return '<h1>Hello! It is {}</h1>'.format(datetime.datetime.utcnow())
 '''
+
+def _ctask1(args1, args2):
+    args2.save()
+    if('host' not in args1):
+        args2.update(unset__audioFileMetadata__participants=1)
+    pass
+
+def _ctask2(args1, args2, args3, args4):
+    args4.update(audioFileType = args1, audioFileMetadata = args3)
+    if('host' not in args2):
+        args4.update(unset__audioFileMetadata__participants=1)
+    pass
 
 def _ctask(args1, args2):
     return args2
@@ -80,7 +92,7 @@ def create():
         audio = Audio( audioFileType = ft)
         audio.audioFileMetadata = _audiometadata
 
-        return chk if chk!=None else _ctask(audio.save(), jsonify(audio)), 200
+        return chk if chk!=None else _ctask(_ctask1(fmd, audio), jsonify(audio)), 200
 
 @app.route('/api/delete/<audioFileType>/<audioFileID>', methods =['DELETE'])
 def delete(audioFileType, audioFileID):
@@ -104,7 +116,7 @@ def update(audioFileType, audioFileID):
         _audiometadata = audioMetaData(**fmd)
         chk = None
         chk = _metadatachk(fmd)
-        return chk if chk!=None else _ctask(audio.update(audioFileType = ft, audioFileMetadata = _audiometadata), jsonify(audio)), 200
+        return chk if chk!=None else _ctask(_ctask2(ft, fmd, _audiometadata, audio), jsonify(audio)), 200
     
 @app.route('/api/get/<audioFileType>', methods =['GET'])
 def get(audioFileType):
