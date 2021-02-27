@@ -35,10 +35,10 @@ and viz a viz <br>
 i.e. You can reset the current flask app to app.py again by running <br>
 
 ```bash
-    > set FLASK_APP=app.py
+> set FLASK_APP=app.py
 ```
 ```bash
-    > flask run
+> flask run
 ```
 
 <hr>
