@@ -1,5 +1,5 @@
 # NOTE
-__________________________ <br>
+<hr>
 ### alt.py contains an alternative code
 Return strings only as responses. Any request gets any of these responses <br>
 *   "Action is successful: 200 Ok"
@@ -21,43 +21,34 @@ body formats represented at the bottom of this markdown <br>
 <br>
 To use alt.py <br>
 Set the current flask app to alt.py <br>
-Run the command
+Run the command <br>
 ```bash
-> set FLASK_APP=alt.py
+    > set FLASK_APP=alt.py
 ```
 ```bash
-> flask run
+    > flask run
 ```
 
 and viz a viz <br>
-i.e. You can reset the current flask app to app.py again by running
+i.e. You can reset the current flask app to app.py again by running <br>
 ```bash
-> set FLASK_APP=app.py
+    > set FLASK_APP=app.py
 ```
 ```bash
-> flask run
+    > flask run
 ```
 
-__________________________ <br>
+<hr>
 ## Endpoints
 <br>
-```bash
-'/api/create'   --  method = POST
-```
-```bash
-'/api/delete/<audioFileType>/<audioFileID>' --  method = DELETE
-```
-```bash
-'/api/update/<audioFileType>/<audioFileID>' --  method = PUT
-```
-```bash
-'/api/get/<audioFileType>'  --  method = GET
-```
-```bash
-'/api/get/<audioFileType>/<audioFileID>'    --  method = GET
-```
+<br>
+*   '/api/create'   --  method = POST
+*   '/api/delete/audioFileType/audioFileID' --  method = DELETE
+*   '/api/update/audioFileType/audioFileID' --  method = PUT:
+*   '/api/get/audioFileType'  --  method = GET
+*   '/api/get/audioFileType/audioFileID'    --  method = GET
 
-__________________________ <br>
+<hr>
 ## Body format
 ### Song:
 ```json
@@ -102,5 +93,5 @@ __________________________ <br>
     }
 }
 ```
-__________________________ <br>
+<hr>
 # Thank you
