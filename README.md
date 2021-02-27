@@ -1,5 +1,12 @@
-## NOTE
+# NOTE
+
 alt.py contains an alternative code
+Return strings only as responses. Any of 
+*   "Action is successful: 200 Ok"
+*   "The request is invalid: 400 bad request"
+*   "Any error: 500 internal server error"
+
+app.py on the other hand
 Return json objects as responses and not just strings
 
 To use alt.py
@@ -18,6 +25,9 @@ i.e. You can reset the current flask app to app.py again by running
 ```bash
 > set FLASK_APP=app.py
 ```
+```bash
+> flask run
+```
 
 ## Endpoints
 '/api/create'   --  method = POST
@@ -26,7 +36,7 @@ i.e. You can reset the current flask app to app.py again by running
 '/api/get/<audioFileType>'  --  method = GET
 '/api/get/<audioFileType>/<audioFileID>'    --  method = GET
 
-## Body format
+# Body format
 ## Song
 ```json
 {
