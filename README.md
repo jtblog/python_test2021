@@ -30,11 +30,11 @@ i.e. You can reset the current flask app to app.py again by running
 ```
 
 ## Endpoints
-'/api/create'   --  method = POST
-'/api/delete/<audioFileType>/<audioFileID>' --  method = DELETE
-'/api/update/<audioFileType>/<audioFileID>' --  method = PUT
-'/api/get/<audioFileType>'  --  method = GET
-'/api/get/<audioFileType>/<audioFileID>'    --  method = GET
+*   '/api/create'   --  method = POST
+*   '/api/delete/<audioFileType>/<audioFileID>' --  method = DELETE
+*   '/api/update/<audioFileType>/<audioFileID>' --  method = PUT
+*   '/api/get/<audioFileType>'  --  method = GET
+*   '/api/get/<audioFileType>/<audioFileID>'    --  method = GET
 
 # Body format
 ## Song
