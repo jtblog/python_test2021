@@ -28,7 +28,7 @@ class audioMetaData(db.DynamicEmbeddedDocument):
     name = db.StringField(required = True, max_length = 100)
     duration = db.IntField(required = True, min_value = 1)
     upload_time = cDateTimeField(required = True, default = datetime.datetime.utcnow())
-    participants = db.ListField(db.StringField(max_length = 100) default = [])
+    participants = db.ListField(db.StringField(max_length = 100), default = [])
         
 class Audio(db.DynamicDocument):
     audioFileType = db.StringField(required = True, max_length = 100)
@@ -112,7 +112,7 @@ def create():
         audio = Audio( audioFileType = ft)
         audio.audioFileMetadata = _audiometadata
 
-        return chk if chk!=None else _ctask(_ctask1(fmd, audio), _response(1))
+        return chk if chk != None else _ctask(_ctask1(fmd, audio), _response(1))
 
 @app.route('/api/delete/<audioFileType>/<audioFileID>', methods =['DELETE'])
 def delete(audioFileType, audioFileID):
@@ -136,7 +136,7 @@ def update(audioFileType, audioFileID):
         _audiometadata = audioMetaData(**fmd)
         chk = None
         chk = _metadatachk(fmd)
-        return chk if chk!=None else _ctask(_ctask2(ft, fmd, _audiometadata, audio), _response(1))
+        return chk if chk != None else _ctask(_ctask2(ft, fmd, _audiometadata, audio), _response(1))
     
 @app.route('/api/get/<audioFileType>', methods =['GET'])
 def get(audioFileType):
