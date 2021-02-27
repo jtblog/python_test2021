@@ -47,11 +47,19 @@ i.e. You can reset the current flask app to app.py again by running <br>
 <br>
 
 ```bash
-*   "/api/create"   --  method = POST
-*   "/api/delete/<audioFileType>/<audioFileID>" --  method = DELETE
-*   "/api/update/<audioFileType>/<audioFileID>" --  method = PUT:
-*   "/api/get/<audioFileType>"  --  method = GET
-*   "/api/get/<audioFileType>/<audioFileID>"    --  method = GET
+'/api/create'  --  method = POST
+```
+```bash
+'/api/delete/<audioFileType>/<audioFileID>' --  method = DELETE
+```
+```bash
+'/api/update/<audioFileType>/<audioFileID>' --  method = PUT
+```
+```bash
+'/api/get/<audioFileType>'  --  method = GET
+```
+```bash
+'/api/get/<audioFileType>/<audioFileID>'   --  method = GET
 ```
 
 <hr>
