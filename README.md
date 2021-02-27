@@ -17,7 +17,7 @@ e.g. Any of the POST, PUT and DELETE request gets json responses like this
 }
 ```
 while GET request get json responses like those of the 
-body formats represented at the bottom of this markdown <br>
+body schemas/models represented at the bottom of this markdown <br>
 
 <br>
 To use alt.py <br>
@@ -64,7 +64,7 @@ i.e. You can reset the current flask app to app.py again by running <br>
 
 <hr>
 
-## Body format
+## Body Schemas/Models
 ### Song:
 ```json
 {
