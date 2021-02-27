@@ -73,8 +73,7 @@ i.e. You can reset the current flask app to app.py again by running <br>
         "id" : 1222,
         "name" : "Name of songs",
         "duration" : 56,
-        "upload_time" : "Time of upload (DateTime)",
-        "participants" : "List of participants"
+        "upload_time" : "Time of upload (DateTime)"
     }
 }
 ```
