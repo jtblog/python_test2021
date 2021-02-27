@@ -25,10 +25,10 @@ Set the current flask app to alt.py <br>
 Run the command <br>
 
 ```bash
-    > set FLASK_APP=alt.py
+> set FLASK_APP=alt.py
 ```
 ```bash
-    > flask run
+> flask run
 ```
 
 and viz a viz <br>
@@ -46,11 +46,13 @@ i.e. You can reset the current flask app to app.py again by running <br>
 ## Endpoints
 <br>
 
+```bash
 *   "/api/create"   --  method = POST
 *   "/api/delete/<audioFileType>/<audioFileID>" --  method = DELETE
 *   "/api/update/<audioFileType>/<audioFileID>" --  method = PUT:
 *   "/api/get/<audioFileType>"  --  method = GET
 *   "/api/get/<audioFileType>/<audioFileID>"    --  method = GET
+```
 
 <hr>
 
