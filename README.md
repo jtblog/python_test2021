@@ -1,6 +1,6 @@
 # NOTE
-
-alt.py contains an alternative code
+__________________________ <br>
+alt.py contains an alternative code <br>
 Return strings only as responses. Any of 
 *   "Action is successful: 200 Ok"
 *   "The request is invalid: 400 bad request"
@@ -9,9 +9,9 @@ Return strings only as responses. Any of
 app.py on the other hand
 Return json objects as responses and not just strings
 
-To use alt.py
-
-Set the current flask app to alt.py
+To use alt.py <br>
+<br>
+Set the current flask app to alt.py <br>
 Run the command
 ```bash
 > set FLASK_APP=alt.py
@@ -20,7 +20,7 @@ Run the command
 > flask run
 ```
 
-and viz a viz
+and viz a viz <br>
 i.e. You can reset the current flask app to app.py again by running
 ```bash
 > set FLASK_APP=app.py
@@ -29,15 +29,18 @@ i.e. You can reset the current flask app to app.py again by running
 > flask run
 ```
 
+__________________________ <br>
 ## Endpoints
+<br>
 *   '/api/create'   --  method = POST
 *   '/api/delete/<audioFileType>/<audioFileID>' --  method = DELETE
 *   '/api/update/<audioFileType>/<audioFileID>' --  method = PUT
 *   '/api/get/<audioFileType>'  --  method = GET
 *   '/api/get/<audioFileType>/<audioFileID>'    --  method = GET
 
-# Body format
-## Song
+__________________________ <br>
+## Body format
+### Song:
 ```json
 {
     "audioFileType" : "mime",
@@ -51,7 +54,7 @@ i.e. You can reset the current flask app to app.py again by running
 }
 ```
 
-## Podcast
+### Podcast:
 ```json
 {
     "audioFileType" : "mime",
@@ -66,7 +69,7 @@ i.e. You can reset the current flask app to app.py again by running
 }
 ```
 
-## Audiobook
+### Audiobook:
 ```json
 {
     "audioFileType" : "mime",
@@ -80,5 +83,5 @@ i.e. You can reset the current flask app to app.py again by running
     }
 }
 ```
-
-## Thank you
+__________________________ <br>
+# Thank you

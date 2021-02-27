@@ -102,7 +102,7 @@ def create():
 def delete(audioFileType, audioFileID):
     audio = Audio.objects.filter(audioFileMetadata__id = audioFileID).first()
     audio.delete()
-    return jsonify({"id": str(audioFileID)}), 200
+    return jsonify({"id": str(audioFileID), "audioFileType": str(audioFileType)}), 200
 
 @app.route('/api/update/<audioFileType>/<audioFileID>', methods =['PUT'])
 def update(audioFileType, audioFileID):
