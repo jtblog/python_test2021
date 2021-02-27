@@ -88,7 +88,7 @@ def create():
     else:
         ft = body['audioFileType']
         fmd = body['audioFileMetadata']
-        fmd['upload_time'] = datetime.datetime.utcnow() + datetime.timetdelta(seconds=2)
+        fmd['upload_time'] = datetime.datetime.utcnow() + datetime.timedelta(seconds=2)
 
         _audiometadata = audioMetaData(**fmd)
         chk = None
@@ -118,7 +118,7 @@ def update(audioFileType, audioFileID):
             return jsonify({"message": "Audio Metadata is required", "code": "audioFileMetadata_missing"}), 400
     else:
         fmd = body['audioFileMetadata']
-        fmd['upload_time'] = datetime.datetime.utcnow() + datetime.timetdelta(seconds=2)
+        fmd['upload_time'] = datetime.datetime.utcnow() + datetime.timedelta(seconds=2)
 
         audio = Audio.objects.filter(audioFileMetadata__id = audioFileID).first()
         ft = audio.audioFileType

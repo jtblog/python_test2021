@@ -1,5 +1,6 @@
 # NOTE
 <hr>
+
 ### alt.py contains an alternative code
 Return strings only as responses. Any request gets any of these responses <br>
 *   "Action is successful: 200 Ok"
