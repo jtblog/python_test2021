@@ -22,6 +22,7 @@ body formats represented at the bottom of this markdown <br>
 To use alt.py <br>
 Set the current flask app to alt.py <br>
 Run the command <br>
+
 ```bash
     > set FLASK_APP=alt.py
 ```
@@ -31,6 +32,7 @@ Run the command <br>
 
 and viz a viz <br>
 i.e. You can reset the current flask app to app.py again by running <br>
+
 ```bash
     > set FLASK_APP=app.py
 ```
@@ -39,16 +41,18 @@ i.e. You can reset the current flask app to app.py again by running <br>
 ```
 
 <hr>
+
 ## Endpoints
 <br>
-<br>
-*   '/api/create'   --  method = POST
-*   '/api/delete/audioFileType/audioFileID' --  method = DELETE
-*   '/api/update/audioFileType/audioFileID' --  method = PUT:
-*   '/api/get/audioFileType'  --  method = GET
-*   '/api/get/audioFileType/audioFileID'    --  method = GET
+
+*   "/api/create"   --  method = POST
+*   "/api/delete/audioFileType/audioFileID" --  method = DELETE
+*   "/api/update/audioFileType/audioFileID" --  method = PUT:
+*   "/api/get/audioFileType"  --  method = GET
+*   "/api/get/audioFileType/audioFileID"    --  method = GET
 
 <hr>
+
 ## Body format
 ### Song:
 ```json
@@ -94,4 +98,5 @@ i.e. You can reset the current flask app to app.py again by running <br>
 }
 ```
 <hr>
+
 # Thank you
