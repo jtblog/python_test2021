@@ -35,13 +35,9 @@ class Audio(db.DynamicDocument):
     audioFileMetadata = db.DynamicField(audioMetaData)
 
 '''
-def _ret(obj, code):
-    return jsonify(obj), code
-
-@app.route('/<code>')
-def index(code):
-    return _ret({"200": "OK"}, code)
-    #return _ret('<h1>Hello! It is {}</h1>'.format(datetime.datetime.utcnow()), code)
+@app.route('/')
+def index():
+    return '<h1>Hello! It is {}</h1>'.format(datetime.datetime.utcnow())
 '''
 
 def _ctask1(args1, args2):
@@ -57,40 +53,24 @@ def _ctask2(args1, args2, args3, args4):
     pass
 
 def _ctask(args1, args2):
-    return args2
-
-
-def _response(args1):
-    if args1 == 1:
-        return Response("Action is successful: 200 Ok", status = 200)
-    elif args1 == 2:
-        return Response("The request is invalid: 400 bad request", status = 400)
-    else:
-        return Response("500 internal server error", status = 500)
-    pass
+    return args2, 200
 
 def _metadatachk(value):
     if('host' in value):
         if not bool(value['host'].strip()):
-            return _response(2)
-            #return Response("Host cannot be empty", status = 400)
+            return jsonify({"message": "Host cannot be empty", "code": "host_value_empty"}), 400
         if(len(value['host']) > 100):
-            return _response(2)
-            #return Response("Host cannot be larger than 100 characters", status = 400)
+            return jsonify({"message": "Host cannot be larger than 100 characters", "code": "host_value_greater_than_100"}), 400
     pass
     if('author' in value or 'narrator' in value):
         if not bool(value['author'].strip()):
-            return _response(2)
-            #return Response("Author cannot be empty", status = 400)
+            return jsonify({"message": "Author cannot be empty", "code": "author_value_empty"}), 400
         if(len(value['author']) > 100):
-            return _response(2)
-            #return Response("Author cannot be larger than 100 characters", status = 400)
+            return jsonify({"message": "Author cannot be larger than 100 characters", "code": "author_value_greater_than_100"}), 400
         if not bool(value['narrator'].strip()):
-            return _response(2)
-            #return Response("Narrator cannot be empty", status = 400)
+            return jsonify({"message": "Narrator cannot be empty", "code": "narrator_value_empty"}), 400
         if(len(value['narrator']) > 100):
-            return _response(2)
-            #return Response("Narrator cannot be larger than 100 characters", status = 400)
+            return jsonify({"message": "Narrator cannot be larger than 100 characters", "code": "narrator_value_greater_than_100"}), 400
     pass
 
 
@@ -100,7 +80,10 @@ def create():
     ft = None
     fmd = None
     if('audioFileType' not in body or 'audioFileMetadata' not in body):
-        return _response(2)
+        if('audioFileType' not in body):
+            return jsonify({"message": "Audio Filetype is required", "code": "audioFileType_missing"}), 400
+        else:
+            return jsonify({"message": "Audio Metadata is required", "code": "audioFileMetadata_missing"}), 400
     else:
         ft = body['audioFileType']
         fmd = body['audioFileMetadata']
@@ -112,13 +95,13 @@ def create():
         audio = Audio( audioFileType = ft)
         audio.audioFileMetadata = _audiometadata
 
-        return chk if chk!=None else _ctask(_ctask1(fmd, audio), _response(1))
+        return chk if chk!= None else _ctask(_ctask1(fmd, audio), jsonify(str(ft)))
 
 @app.route('/api/delete/<audioFileType>/<audioFileID>', methods =['DELETE'])
 def delete(audioFileType, audioFileID):
     audio = Audio.objects.filter(audioFileMetadata__id = audioFileID).first()
     audio.delete()
-    return _response(1)
+    return jsonify(str(audioFileID)), 200
 
 @app.route('/api/update/<audioFileType>/<audioFileID>', methods =['PUT'])
 def update(audioFileType, audioFileID):
@@ -127,7 +110,10 @@ def update(audioFileType, audioFileID):
     fmd = None
 
     if('audioFileType' not in body or 'audioFileMetadata' not in body):
-        return _response(2)
+        if('audioFileType' not in body):
+            return jsonify({"message": "Audio Filetype is required", "code": "audioFileType_missing"}), 400
+        else:
+            return jsonify({"message": "Audio Metadata is required", "code": "audioFileMetadata_missing"}), 400
     else:
         fmd = body['audioFileMetadata']
 
@@ -136,14 +122,14 @@ def update(audioFileType, audioFileID):
         _audiometadata = audioMetaData(**fmd)
         chk = None
         chk = _metadatachk(fmd)
-        return chk if chk!=None else _ctask(_ctask2(ft, fmd, _audiometadata, audio), _response(1))
+        return chk if chk! = None else _ctask(_ctask2(ft, fmd, _audiometadata, audio), jsonify(audio))
     
 @app.route('/api/get/<audioFileType>', methods =['GET'])
 def get(audioFileType):
     audio = Audio.objects.filter(audioFileType = audioFileType)
-    return _response(1)
+    return jsonify(audio), 200
 
 @app.route('/api/get/<audioFileType>/<audioFileID>', methods =['GET'])
 def _get(audioFileType, audioFileID):
     audio = Audio.objects.filter(audioFileMetadata__id = audioFileID).first()
-    return _response(1)
+    return jsonify(audio), 200
