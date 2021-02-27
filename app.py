@@ -96,13 +96,13 @@ def create():
         audio = Audio( audioFileType = ft)
         audio.audioFileMetadata = _audiometadata
 
-        return chk if chk != None else _ctask(_ctask1(fmd, audio), jsonify({"id": fmd['id'], "audioFileType": str(ft)}))
+        return chk if chk != None else _ctask(_ctask1(fmd, audio), jsonify({"audioFileID": fmd['id'], "audioFileType": str(ft)}))
 
 @app.route('/api/delete/<audioFileType>/<audioFileID>', methods =['DELETE'])
 def delete(audioFileType, audioFileID):
     audio = Audio.objects.filter(audioFileMetadata__id = audioFileID).first()
     audio.delete()
-    return jsonify({"id": str(audioFileID), "audioFileType": str(audioFileType)}), 200
+    return jsonify({"audioFileID": str(audioFileID), "audioFileType": str(audioFileType)}), 200
 
 @app.route('/api/update/<audioFileType>/<audioFileID>', methods =['PUT'])
 def update(audioFileType, audioFileID):
@@ -123,7 +123,7 @@ def update(audioFileType, audioFileID):
         _audiometadata = audioMetaData(**fmd)
         chk = None
         chk = _metadatachk(fmd)
-        return chk if chk != None else _ctask(_ctask2(ft, fmd, _audiometadata, audio), jsonify({"id": fmd['id'], "audioFileType": str(ft)}))
+        return chk if chk != None else _ctask(_ctask2(ft, fmd, _audiometadata, audio), jsonify({"audioFileID": fmd['id'], "audioFileType": str(ft)}))
     
 @app.route('/api/get/<audioFileType>', methods =['GET'])
 def get(audioFileType):

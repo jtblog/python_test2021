@@ -1,16 +1,25 @@
 # NOTE
 __________________________ <br>
-alt.py contains an alternative code <br>
-Return strings only as responses. Any of 
+### alt.py contains an alternative code
+Return strings only as responses. Any request gets any of these responses <br>
 *   "Action is successful: 200 Ok"
 *   "The request is invalid: 400 bad request"
 *   "Any error: 500 internal server error"
 
-app.py on the other hand
-Return json objects as responses and not just strings
+### app.py on the other hand 
+Return json objects as responses and not just strings <br>
+e.g. Any of the POST, PUT and DELETE request gets json responses like this
+```json
+{
+    "audioFileID" : 1222,
+    "audioFileType" : "mime"
+}
+```
+while GET request get json responses like those of the 
+body formats represented at the bottom of this markdown <br>
 
-To use alt.py <br>
 <br>
+To use alt.py <br>
 Set the current flask app to alt.py <br>
 Run the command
 ```bash
@@ -32,11 +41,21 @@ i.e. You can reset the current flask app to app.py again by running
 __________________________ <br>
 ## Endpoints
 <br>
-*   '/api/create'   --  method = POST
-*   '/api/delete/<audioFileType>/<audioFileID>' --  method = DELETE
-*   '/api/update/<audioFileType>/<audioFileID>' --  method = PUT
-*   '/api/get/<audioFileType>'  --  method = GET
-*   '/api/get/<audioFileType>/<audioFileID>'    --  method = GET
+```bash
+'/api/create'   --  method = POST
+```
+```bash
+'/api/delete/<audioFileType>/<audioFileID>' --  method = DELETE
+```
+```bash
+'/api/update/<audioFileType>/<audioFileID>' --  method = PUT
+```
+```bash
+'/api/get/<audioFileType>'  --  method = GET
+```
+```bash
+'/api/get/<audioFileType>/<audioFileID>'    --  method = GET
+```
 
 __________________________ <br>
 ## Body format
